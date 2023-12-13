@@ -1,15 +1,16 @@
-with open('day_1_input.txt', 'r') as file:
-    control_sum = 0
-    for line in file:
-        first_number = None
-        last_number = None
-        for letter in line:
-            if letter.isdigit() and first_number is None:
-                first_number = letter
-                last_number = letter
-            elif letter.isdigit() and first_number is not None:
-                last_number = letter
-        control_sum += int(first_number + last_number)
+import re
 
+nums = 'one|two|three|four|five|six|seven|eight|nine'
+nums_re = re.compile(r'(?=(\d|%s))' % nums)
+nums = nums.split('|')
 
-print(control_sum)
+with open('day_1_input.txt', 'r') as f:
+    total = 0
+    for line in f:
+        digits = []
+        for num in nums_re.findall(line):
+            if num in nums:
+                num = str(nums.index(num) + 1)
+            digits.append(num)
+        total += int(digits[0] + digits[-1])
+    print(total)
