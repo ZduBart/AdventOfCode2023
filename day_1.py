@@ -1,10 +1,10 @@
 import re
 
-nums = 'one|two|three|four|five|six|seven|eight|nine'
-nums_re = re.compile(r'(?=(\d|%s))' % nums)
-nums = nums.split('|')
+nums = "one|two|three|four|five|six|seven|eight|nine"
+nums_re = re.compile(r"(?=(\d|%s))" % nums)
+nums = nums.split("|")
 
-with open('day_1_input.txt', 'r') as f:
+with open("day_1_input.txt", "r") as f:
     total = 0
     for line in f:
         digits = []
